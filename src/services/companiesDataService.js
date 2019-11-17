@@ -15,6 +15,7 @@ const CompaniesDataService = {
   ],
   getCompanyData:{
     name: "carsales",
+    id: "E04B9FFC-3F23-49F0-92BA-64B8C6853DD0",
     locations:[{
       "city": "Richmond",
       "state": "Victoria",
