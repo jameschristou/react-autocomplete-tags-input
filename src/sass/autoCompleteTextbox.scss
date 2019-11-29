@@ -1,0 +1,16 @@
+.autocompleteTextBox{
+    &__items{
+        padding: 5px;
+
+        &:hover{
+            background-color: lightgrey;
+        }
+    }
+
+    &__item{
+        display: inline-block;
+        margin: 4px 10px;
+        background-color: lightblue;
+        padding: 5px 10px;
+    }
+}
