@@ -24,6 +24,15 @@ const CompanyDataComponent = () => {
     fetchData();
   }, []);
 
+  const updateDevList = (devList) => {
+    console.log('Updating dev list');
+    console.log(devList);
+    let newCompanyData = companyData;
+    newCompanyData.tech.dev = devList;
+
+    setCompanyData(newCompanyData);
+  }
+
   if(companyData == null){
     return (
       <div>Loading.....</div>
@@ -38,7 +47,7 @@ const CompanyDataComponent = () => {
       <div>Jobs Page Url: {companyData.jobsPageUrl}</div>
       <div>
         <h3>Tech</h3>
-        <AutoCompleteTextBox label="Dev" items={companyData.tech.dev}/>
+        <AutoCompleteTextBox label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList}/>
         <AutoCompleteTextBox label="Architecture" items={companyData.tech.architecture}/>
         <AutoCompleteTextBox label="Cloud" items={companyData.tech.cloud}/>
         <AutoCompleteTextBox label="Tools" items={companyData.tech.tools}/>
