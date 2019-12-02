@@ -1,8 +1,10 @@
 import '../sass/autoCompleteTextbox.scss';
 
-import React from "react";
+import React, {useState} from "react";
 
 const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
+  const [isAddingNewItem, setIsAddingNewItem] = useState(false);
+
   const removeItemHandler = (itemToRemove) => {
     console.log('This is a test');
 
@@ -13,10 +15,14 @@ const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
     updateListHandler(itemList);
   };
 
+  const startAddingNewItemHandler = () => {
+    setIsAddingNewItem(true);
+  };
+
   return (
     <div className="autocompleteTextBox">
       <label className="autocompleteTextBox__label">{label}</label>
-      <div className="autocompleteTextBox__items">
+      <div className="autocompleteTextBox__items" onClick={event => startAddingNewItemHandler()}>
         {items.map(
           (item, index) => {
             return (
@@ -24,6 +30,7 @@ const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
             );
           }
         )}
+        <div className="autocompleteTextBoxNewItem" contentEditable="true"></div>
       </div>
     </div>
   );
