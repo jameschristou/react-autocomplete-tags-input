@@ -1,6 +1,6 @@
 import '../sass/autoCompleteTextbox.scss';
 
-import React, {useState} from "react";
+import React, {useState, useRef, useEffect} from "react";
 
 const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
   const [isAddingNewItem, setIsAddingNewItem] = useState(false);
@@ -19,10 +19,14 @@ const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
     setIsAddingNewItem(true);
   };
 
+  const newItemUpdatedEventHandler = (evnt) => {
+    console.log('Adding new item');
+  }
+
   return (
     <div className="autocompleteTextBox">
       <label className="autocompleteTextBox__label">{label}</label>
-      <div className="autocompleteTextBox__items" onClick={event => startAddingNewItemHandler()}>
+      <div className="autocompleteTextBox__items" onClick={evnt => startAddingNewItemHandler()}>
         {items.map(
           (item, index) => {
             return (
@@ -30,7 +34,9 @@ const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
             );
           }
         )}
-        <div className="autocompleteTextBoxNewItem" contentEditable="true"></div>
+        {isAddingNewItem &&
+          <NewItem />
+        }
       </div>
     </div>
   );
@@ -43,6 +49,30 @@ const AutoCompleteItem = ({itemIndex, item, removeItemHandler}) => {
     <div className="autocompleteTextBoxItem">
       <span className="autocompleteTextBoxItem__text">{item}</span>
       <span className="autocompleteTextBoxItem__remove" onClick={event => removeItemHandler(item)}>x</span>
+    </div>
+  );
+}
+
+const NewItem = () => {
+  const txtBoxRef = useRef(null);
+
+  useEffect(() => {
+    txtBoxRef.current.focus();
+  }, [txtBoxRef]);
+
+  const newItemUpdatedEventHandler = () => {
+    console.log('Typing new item');
+  }
+
+  const showAutoCompleteList = true;
+
+  return (
+    <div className="autocompleteTextBoxNewItem">
+      <div ref={txtBoxRef} className="autocompleteTextBoxNewItem__text" contentEditable="true" onInput={evnt => newItemUpdatedEventHandler(evnt)}></div>
+      <ul className={`autocompleteTextBoxNewItem__list${showAutoCompleteList ? '' : ' hidden'}`}>
+        <li className="autocompleteTextBoxNewItem__listitem">Option1</li>
+        <li className="autocompleteTextBoxNewItem__listitem">Option2</li>
+      </ul>
     </div>
   );
 }

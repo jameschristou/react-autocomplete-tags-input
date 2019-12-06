@@ -35,10 +35,28 @@
 
     .autocompleteTextBoxNewItem{
         display:inline-block;
-        min-width:30px;
+        position: relative;
 
-        &:focus{
-            outline: none;
+        &__text{
+            display:inline-block;
+            min-width:100px;
+            padding: 5px 10px;
+    
+            &:focus{
+                outline: none;
+                background-color: lightblue;
+            }
         }
+    
+        &__list{
+            list-style-type: none;
+            padding:0;
+            position:absolute;
+            width:100%;
+        }
+    }
+
+    .hidden{
+        display:none;
     }
 }
