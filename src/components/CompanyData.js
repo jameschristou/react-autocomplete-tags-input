@@ -52,6 +52,18 @@ const CompanyDataComponent = () => {
     setCompanyData(newCompanyData);
   }
 
+  const filterOptionsHandler = (input) => {
+    let options = ["ASP.NET Core", ".NET Core", "React", "Redux", "Angular", "PHP", "Javascript", "Node", "SQL Server", "Webpack"];
+
+    if(!input || input.length === 0){
+      return [options];
+    }
+
+    return options.filter(function(item) {
+      return item.indexOf(input) >= 0;
+    });
+  }
+
   if(companyData == null){
     return (
       <div>Loading.....</div>
@@ -66,10 +78,10 @@ const CompanyDataComponent = () => {
       <div>Jobs Page Url: {companyData.jobsPageUrl}</div>
       <div>
         <h3>Tech</h3>
-        <AutoCompleteTextBox label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList}/>
-        <AutoCompleteTextBox label="Architecture" items={companyData.tech.architecture} updateListHandler={updateArchitectureList}/>
-        <AutoCompleteTextBox label="Cloud" items={companyData.tech.cloud} updateListHandler={updateCloudList}/>
-        <AutoCompleteTextBox label="Tools" items={companyData.tech.tools} updateListHandler={updateToolsList}/>
+        <AutoCompleteTextBox label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList} filterOptionsHandler={filterOptionsHandler}/>
+        <AutoCompleteTextBox label="Architecture" items={companyData.tech.architecture} updateListHandler={updateArchitectureList} filterOptionsHandler={filterOptionsHandler}/>
+        <AutoCompleteTextBox label="Cloud" items={companyData.tech.cloud} updateListHandler={updateCloudList} filterOptionsHandler={filterOptionsHandler}/>
+        <AutoCompleteTextBox label="Tools" items={companyData.tech.tools} updateListHandler={updateToolsList} filterOptionsHandler={filterOptionsHandler}/>
       </div>
     </div>
   );

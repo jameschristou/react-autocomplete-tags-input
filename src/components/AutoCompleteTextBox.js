@@ -2,7 +2,7 @@ import '../sass/autoCompleteTextbox.scss';
 
 import React, {useState, useRef, useEffect} from "react";
 
-const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
+const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHandler}) => {
   const [isAddingNewItem, setIsAddingNewItem] = useState(false);
 
   const removeItemHandler = (itemToRemove) => {
@@ -35,7 +35,7 @@ const AutoCompleteTextBox = ({label, items, updateListHandler}) => {
           }
         )}
         {isAddingNewItem &&
-          <NewItem />
+          <NewItem filterOptionsHandler={filterOptionsHandler}/>
         }
       </div>
     </div>
@@ -53,15 +53,18 @@ const AutoCompleteItem = ({itemIndex, item, removeItemHandler}) => {
   );
 }
 
-const NewItem = () => {
+const NewItem = ({filterOptionsHandler}) => {
   const txtBoxRef = useRef(null);
+  const [newItemsOptions, setNewItemsOptions] = useState([]);
 
   useEffect(() => {
     txtBoxRef.current.focus();
   }, [txtBoxRef]);
 
-  const newItemUpdatedEventHandler = () => {
-    console.log('Typing new item');
+  const newItemUpdatedEventHandler = (evnt) => {
+    let options = filterOptionsHandler(evnt.target.textContent.trim());
+
+    setNewItemsOptions(options);
   }
 
   const showAutoCompleteList = true;
@@ -70,8 +73,13 @@ const NewItem = () => {
     <div className="autocompleteTextBoxNewItem">
       <div ref={txtBoxRef} className="autocompleteTextBoxNewItem__text" contentEditable="true" onInput={evnt => newItemUpdatedEventHandler(evnt)}></div>
       <ul className={`autocompleteTextBoxNewItem__list${showAutoCompleteList ? '' : ' hidden'}`}>
-        <li className="autocompleteTextBoxNewItem__listitem">Option1</li>
-        <li className="autocompleteTextBoxNewItem__listitem">Option2</li>
+        {newItemsOptions.map(
+          (item, index) => {
+            return (
+              <li className="autocompleteTextBoxNewItem__listitem">{item}</li>
+            );
+          }
+        )}
       </ul>
     </div>
   );
