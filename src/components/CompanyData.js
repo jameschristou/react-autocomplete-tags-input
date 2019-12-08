@@ -53,10 +53,10 @@ const CompanyDataComponent = () => {
   }
 
   const filterOptionsHandler = (input) => {
-    let options = ["ASP.NET Core", ".NET Core", "React", "Redux", "Angular", "PHP", "Javascript", "Node", "SQL Server", "Webpack"];
+    let options = ["ASP.NET Core", ".NET Core", "React", "Redux", "Redis", "Angular", "PHP", "Javascript", "Node", "SQL Server", "Webpack"];
 
     if(!input || input.length === 0){
-      return [options];
+      return options;
     }
 
     return options.filter(function(item) {

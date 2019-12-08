@@ -36,6 +36,7 @@
     .autocompleteTextBoxNewItem{
         display:inline-block;
         position: relative;
+        margin-left: 10px;
 
         &__text{
             display:inline-block;
@@ -56,10 +57,12 @@
             background-color: lightblue;
             margin: 0;
             box-sizing: border-box;
+            border-top: solid 4px darkgray;
         }
 
         &__listitem{
             padding: 5px 10px;
+            cursor: pointer;
 
             &:hover{
                 background-color:lightgrey;

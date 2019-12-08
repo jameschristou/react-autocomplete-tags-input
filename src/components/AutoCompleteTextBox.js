@@ -15,18 +15,30 @@ const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHand
     updateListHandler(itemList);
   };
 
-  const startAddingNewItemHandler = () => {
-    setIsAddingNewItem(true);
-  };
-
   const newItemUpdatedEventHandler = (evnt) => {
     console.log('Adding new item');
+  }
+
+  const addNewItemHandler = (evnt) => {
+    console.log('Adding new item');
+
+    if(!isAddingNewItem){
+      setIsAddingNewItem(true);
+    }
+  }
+
+  const addItemHandler = (item) => {
+    let itemList = [...items];
+
+    itemList.push(item);
+
+    updateListHandler(itemList);
   }
 
   return (
     <div className="autocompleteTextBox">
       <label className="autocompleteTextBox__label">{label}</label>
-      <div className="autocompleteTextBox__items" onClick={evnt => startAddingNewItemHandler()}>
+      <div className="autocompleteTextBox__items" onClick={evnt => addNewItemHandler()} onBlur={evnt => setIsAddingNewItem(false)}>
         {items.map(
           (item, index) => {
             return (
@@ -35,48 +47,54 @@ const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHand
           }
         )}
         {isAddingNewItem &&
-          <NewItem filterOptionsHandler={filterOptionsHandler}/>
+          <NewItem filterOptionsHandler={filterOptionsHandler} existingItems={items} addItemHandler={addItemHandler}/>
         }
       </div>
     </div>
   );
-
-  // every time the user clicks into the box then create a div with contentEditable property
 }
 
 const AutoCompleteItem = ({itemIndex, item, removeItemHandler}) => {
   return (
-    <div className="autocompleteTextBoxItem">
+    <div className="autocompleteTextBoxItem" onClick={evnt => evnt.stopPropagation()}>
       <span className="autocompleteTextBoxItem__text">{item}</span>
       <span className="autocompleteTextBoxItem__remove" onClick={event => removeItemHandler(item)}>x</span>
     </div>
   );
 }
 
-const NewItem = ({filterOptionsHandler}) => {
+const NewItem = ({filterOptionsHandler, existingItems, addItemHandler}) => {
   const txtBoxRef = useRef(null);
   const [newItemsOptions, setNewItemsOptions] = useState([]);
 
   useEffect(() => {
+    console.log('useEffect:NewItem');
     txtBoxRef.current.focus();
+
+    setNewItemsOptions(getNotSelectedOptions(''));
   }, [txtBoxRef]);
 
   const newItemUpdatedEventHandler = (evnt) => {
-    let options = filterOptionsHandler(evnt.target.textContent.trim());
+    let options = getNotSelectedOptions(evnt.target.textContent.trim());
 
     setNewItemsOptions(options);
   }
 
-  const showAutoCompleteList = true;
+  const getNotSelectedOptions = (filterText) => {
+    let options = filterOptionsHandler(filterText);
+
+    // remove options which are already selected
+    return options.filter(o => existingItems.indexOf(o) < 0);
+  }
 
   return (
     <div className="autocompleteTextBoxNewItem">
       <div ref={txtBoxRef} className="autocompleteTextBoxNewItem__text" contentEditable="true" onInput={evnt => newItemUpdatedEventHandler(evnt)}></div>
-      <ul className={`autocompleteTextBoxNewItem__list${showAutoCompleteList ? '' : ' hidden'}`}>
+      <ul className="autocompleteTextBoxNewItem__list">
         {newItemsOptions.map(
           (item, index) => {
             return (
-              <li className="autocompleteTextBoxNewItem__listitem">{item}</li>
+              <li key={index} className="autocompleteTextBoxNewItem__listitem" onClick={evnt => addItemHandler(item)}>{item}</li>
             );
           }
         )}
