@@ -79,9 +79,9 @@ const CompanyDataComponent = () => {
       <div>
         <h3>Tech</h3>
         <AutoCompleteTextBox label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList} filterOptionsHandler={filterOptionsHandler}/>
-        <AutoCompleteTextBox label="Architecture" items={companyData.tech.architecture} updateListHandler={updateArchitectureList} filterOptionsHandler={filterOptionsHandler}/>
+        {/* <AutoCompleteTextBox label="Architecture" items={companyData.tech.architecture} updateListHandler={updateArchitectureList} filterOptionsHandler={filterOptionsHandler}/>
         <AutoCompleteTextBox label="Cloud" items={companyData.tech.cloud} updateListHandler={updateCloudList} filterOptionsHandler={filterOptionsHandler}/>
-        <AutoCompleteTextBox label="Tools" items={companyData.tech.tools} updateListHandler={updateToolsList} filterOptionsHandler={filterOptionsHandler}/>
+        <AutoCompleteTextBox label="Tools" items={companyData.tech.tools} updateListHandler={updateToolsList} filterOptionsHandler={filterOptionsHandler}/> */}
       </div>
     </div>
   );

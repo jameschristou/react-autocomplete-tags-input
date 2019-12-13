@@ -34,9 +34,13 @@
     }
 
     .autocompleteTextBoxNewItem{
-        display:inline-block;
+        display:block;
         position: relative;
-        margin-left: 10px;
+        margin: 4px 10px;
+
+        &__container{
+            position:absolute;
+        }
 
         &__text{
             display:inline-block;
@@ -52,7 +56,6 @@
         &__list{
             list-style-type: none;
             padding:0;
-            position:absolute;
             width:100%;
             background-color: lightblue;
             margin: 0;
