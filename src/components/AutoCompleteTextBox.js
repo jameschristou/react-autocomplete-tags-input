@@ -99,15 +99,7 @@ const NewItem = ({filterOptionsHandler, existingItems, selectNewItemHandler, onB
 
     setNewItemsOptions(getNotSelectedOptions(''));
 
-    if(shouldShow && !clickOutEventRegistered){
-      document.addEventListener("click", documentClickEventListener);
-
-      setClickOutEventRegistered(true);
-    }
-    else{
-      document.removeEventListener("click", documentClickEventListener);
-    }
-
+    document.addEventListener("click", documentClickEventListener);
   }, [txtBoxRef, shouldShow]);
 
   const newItemUpdatedEventHandler = (evnt) => {
