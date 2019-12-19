@@ -8,7 +8,6 @@ const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHand
 
   useEffect(() => {
     console.log('useEffect:AutoCompleteTextBox');
-    //itemsContainer.current.addEventListener("blur", (evnt) => console.log("Blur event triggered"));
   }, [isAddingNewItem]);
 
   const newItemUpdatedEventHandler = (evnt) => {
@@ -61,7 +60,7 @@ const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHand
   return (
     <div className="autocompleteTextBox">
       <label className="autocompleteTextBox__label">{label}</label>
-      <div ref={itemsContainer} className="autocompleteTextBox__items" onClick={evnt => {evnt.stopPropagation(); addNewItemHandler(evnt);}} >
+      <div ref={itemsContainer} className={`autocompleteTextBox__items${isAddingNewItem ? ' autocompleteTextBox__items-active' : ''}`} onClick={evnt => {evnt.stopPropagation(); addNewItemHandler(evnt);}} >
         {items.map(
           (item, index) => {
             return (
@@ -69,9 +68,6 @@ const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHand
             );
           }
         )}
-        {/* {isAddingNewItem &&
-          <NewItem filterOptionsHandler={filterOptionsHandler} existingItems={items} selectNewItemHandler={addItemHandler} onBlurHandler={newItemBlurEventHandler}/>
-        } */}
         <NewItem filterOptionsHandler={filterOptionsHandler} existingItems={items} selectNewItemHandler={addItemHandler} onBlurHandler={newItemBlurEventHandler} shouldShow={isAddingNewItem}/>
       </div>
     </div>
@@ -142,7 +138,7 @@ const NewItem = ({filterOptionsHandler, existingItems, selectNewItemHandler, onB
 
     if(clickOutElement.className.includes('hidden')) return;
 
-    if(evnt.target == document.querySelector(".autocompleteTextBox__items")) return;
+    if(evnt.target.className.includes('autocompleteTextBox__items')) return;
 
     let targetElement = evnt.target;
 
