@@ -47,11 +47,8 @@
             display:inline-block;
             min-width:120px;
             padding: 5px 10px;
-    
-            &:focus{
-                outline: none;
-                background-color: lightblue;
-            }
+            outline: none;
+            background-color: lightblue;
         }
     
         &__list{
