@@ -1,19 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
-import CompaniesDataService from '../services/CompaniesDataService';
 import AutoCompleteTextBox from './AutoCompleteTextBox';
 
 const CompanyDataComponent = () => {
-  // We can use the `useParams` hook here to access
-  // the dynamic pieces of the URL.
-  let { name } = useParams();
-
   const [companyData, setCompanyData] = useState(null);
 
   useEffect(() => {
@@ -72,10 +60,6 @@ const CompanyDataComponent = () => {
   
   return (
     <div>
-      <h2>Company Details: {companyData.name}</h2>
-      <div>Name: {companyData.name}</div>
-      <div>Id: {companyData.id}</div>
-      <div>Jobs Page Url: {companyData.jobsPageUrl}</div>
       <div>
         <h3>Tech</h3>
         <AutoCompleteTextBox label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList} filterOptionsHandler={filterOptionsHandler}/>
@@ -85,6 +69,19 @@ const CompanyDataComponent = () => {
       </div>
     </div>
   );
+}
+
+const CompaniesDataService = {
+  getCompanyData:{
+    tech:{
+      dev: [".NET", "ASP.NET", ".NET Core", "ASP.NET Core", "Javascript", "Angular", "React", "Redux", "AWS", "PHP", "Wordpress", "SQL Server", "DynamoDB", "AWS ECS", "Redis", "RabbitMQ"],
+      classifications: [".NET", "AWS"],
+      cloud: ["AWS"],
+      architecture: ["Microservices"],
+      tools: ["Jenkins", "Bamboo", "Octopus", "Elastic APM", "Sumologic", "Bitbucket", "Github", "Stash", "Jira", "Confluence"],
+      analytics: ["Google Analytics"]
+    }
+  }
 }
 
 export default CompanyDataComponent;
