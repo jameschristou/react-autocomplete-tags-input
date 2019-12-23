@@ -1,14 +1,16 @@
 {
   "name": "@jchristou/react-autocomplete-tags-input",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React component for displaying an editable list of tags with autocompletion for adding more tags",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.config.js --env.env=dev",
     "build": "webpack --config webpack/webpack.config.js --env.env=prod",
+    "build:component": "webpack --config webpack/webpack.component.js --env.env=prod",
     "build:analyze": "npm run build -- --env.addon=bundleanalyze --env.addon=bundlevisualizer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files":["dist-component", "src/README.md"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jameschristou/react-autocomplete-tags-input"

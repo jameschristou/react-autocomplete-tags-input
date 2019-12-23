@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import AutoCompleteTextBox from './AutoCompleteTextBox';
+import AutoCompleteTagsInput from '../../src/AutoCompleteTagsInput';
 
 const TestPageComponent = () => {
   const [companyData, setCompanyData] = useState(null);
@@ -74,10 +74,10 @@ const TestPageComponent = () => {
     <div>
       <div>
         <h3>Tech</h3>
-        <AutoCompleteTextBox label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList} filterOptionsHandler={filterDevOptionsHandler}/>
+        <AutoCompleteTagsInput label="Dev" items={companyData.tech.dev} updateListHandler={updateDevList} filterOptionsHandler={filterDevOptionsHandler}/>
         {/* <AutoCompleteTextBox label="Architecture" items={companyData.tech.architecture} updateListHandler={updateArchitectureList} filterOptionsHandler={filterOptionsHandler}/>
         <AutoCompleteTextBox label="Cloud" items={companyData.tech.cloud} updateListHandler={updateCloudList} filterOptionsHandler={filterOptionsHandler}/> */}
-        <AutoCompleteTextBox label="Tools" items={companyData.tech.tools} updateListHandler={updateToolsList} filterOptionsHandler={filterToolsOptionsHandler}/>
+        <AutoCompleteTagsInput label="Tools" items={companyData.tech.tools} updateListHandler={updateToolsList} filterOptionsHandler={filterToolsOptionsHandler}/>
       </div>
     </div>
   );

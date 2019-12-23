@@ -1,16 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './test/index.js',
+  entry: './src/AutoCompleteTagsInput.js',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader']
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          'css-loader',
+          'sass-loader'
+        ],
       }
     ]
   },
@@ -18,19 +28,12 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    path: path.resolve(__dirname, '../', 'dist'),
+    path: path.resolve(__dirname, '../', 'dist-component'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: './test/index.html'
-    })
-  ],
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  }
+    new MiniCssExtractPlugin({ filename: 'style.css' })
+  ]
 };

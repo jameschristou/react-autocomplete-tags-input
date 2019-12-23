@@ -1,10 +1,10 @@
-import '../sass/autoCompleteTextbox.scss';
+import './sass/autoCompleteTextbox.scss';
 
 import React, {useState, useRef, useEffect} from "react";
 
 // react-autocomplete-tags-input
 
-const AutoCompleteTextBox = ({label, items, updateListHandler, filterOptionsHandler}) => {
+const AutoCompleteTagsInput = ({label, items, updateListHandler, filterOptionsHandler}) => {
   const [isAddingNewItem, setIsAddingNewItem] = useState(false);
   const itemsContainer = useRef();
   const [id, setId] = useState(null);
@@ -188,4 +188,4 @@ const NewItem = ({filterOptionsHandler, existingItems, selectNewItemHandler, onB
   );
 }
 
-export default AutoCompleteTextBox;
+export default AutoCompleteTagsInput;
