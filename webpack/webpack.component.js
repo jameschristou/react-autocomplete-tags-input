@@ -30,7 +30,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../', 'dist-component'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'react-autocomplete-tags-input.js'
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
   },
   plugins: [
     new CleanWebpackPlugin(),

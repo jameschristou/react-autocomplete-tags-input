@@ -1,11 +1,8 @@
 ## React Autocomplete Tags Input
-===
 
 A simple React component for displaying an editable list of tags with autocompletion for adding more tags. This is inspired by the Components field editor in Jira.
 
 Please note that this package is not yet ready for production use. I'm still actively working on this but please come back soon!
-
-===
 
 ### Installation
 To come
