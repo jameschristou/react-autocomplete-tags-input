@@ -2,9 +2,7 @@ import './sass/autoCompleteTextbox.scss';
 
 import React, {useState, useRef, useEffect} from "react";
 
-// react-autocomplete-tags-input
-
-const AutoCompleteTagsInput = ({label, items, updateListHandler, filterOptionsHandler}) => {
+const ReactAutoCompleteTagsInput = ({label, items, updateListHandler, filterOptionsHandler}) => {
   const [isAddingNewItem, setIsAddingNewItem] = useState(false);
   const itemsContainer = useRef();
   const [id, setId] = useState(null);
@@ -22,10 +20,6 @@ const AutoCompleteTagsInput = ({label, items, updateListHandler, filterOptionsHa
     // generates a random 5 digit id which should be enough to prevent conflict between many instances of 
     // this component on the one page
     return Math.floor(Math.random()*10000);
-  }
-
-  const newItemUpdatedEventHandler = (evnt) => {
-    console.log('Adding new item');
   }
 
   const addNewItemHandler = (evnt) => {
@@ -188,4 +182,4 @@ const NewItem = ({filterOptionsHandler, existingItems, selectNewItemHandler, onB
   );
 }
 
-export default AutoCompleteTagsInput;
+export default ReactAutoCompleteTagsInput;

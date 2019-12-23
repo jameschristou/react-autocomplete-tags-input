@@ -4,7 +4,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/AutoCompleteTagsInput.js',
+  mode: 'production',
+  entry: {
+    ReactAutoCompleteTagsInput: './src/ReactAutoCompleteTagsInput.js',
+  },
   module: {
     rules: [
       {
@@ -30,11 +33,23 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../', 'dist-component'),
     publicPath: '/',
-    filename: 'react-autocomplete-tags-input.js'
+    filename: 'index.js',
+    libraryTarget: 'umd',
+    library: 'react-autocomplete-tags-input',
   },
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom'
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),
