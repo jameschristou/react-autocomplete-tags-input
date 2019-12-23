@@ -1,3 +1,5 @@
+import '@jchristou/react-autocomplete-tags-input/dist-component/style.css';
+
 import React, {useState, useEffect} from "react";
 import ReactAutoCompleteTagsInput from "@jchristou/react-autocomplete-tags-input"
 
