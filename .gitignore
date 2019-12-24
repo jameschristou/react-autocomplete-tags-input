@@ -1,3 +1,6 @@
+/node_modules/
+/dist/
+/dist-component/
 */node_modules/
 */dist/
 */dist-component/
