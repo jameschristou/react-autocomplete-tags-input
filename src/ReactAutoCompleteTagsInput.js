@@ -2,7 +2,7 @@ import './sass/autoCompleteTextbox.scss';
 
 import React, {useState, useRef, useEffect} from "react";
 
-const ReactAutoCompleteTagsInput = ({label, items, updateListHandler, filterOptionsHandler}) => {
+const ReactAutoCompleteTagsInput = ({items, addItemHandler, deleteItemHandler, filterOptionsHandler}) => {
   const [isAddingNewItem, setIsAddingNewItem] = useState(false);
   const itemsContainer = useRef();
   const [id, setId] = useState(null);
@@ -22,7 +22,7 @@ const ReactAutoCompleteTagsInput = ({label, items, updateListHandler, filterOpti
     return Math.floor(Math.random()*10000);
   }
 
-  const addNewItemHandler = (evnt) => {
+  const toggleAddNewItemClickHandler = (evnt) => {
     evnt.stopPropagation();
     console.log('addNewItemHandler handler');
 
@@ -36,14 +36,10 @@ const ReactAutoCompleteTagsInput = ({label, items, updateListHandler, filterOpti
     return false;
   }
 
-  const addItemHandler = (item) => {
+  const selectNewItemHandler = (item) => {
     console.log('Adding item');
 
-    let itemList = [...items];
-
-    itemList.push(item);
-
-    updateListHandler(itemList);
+    addItemHandler(item);
 
     setIsAddingNewItem(false);
   }
@@ -58,13 +54,12 @@ const ReactAutoCompleteTagsInput = ({label, items, updateListHandler, filterOpti
   const removeItemHandler = (itemToRemove) => {
     let itemList = items.filter(item => item != itemToRemove);
 
-    updateListHandler(itemList);
-  };
+    deleteItemHandler(itemToRemove);
+  }
 
   return (
     <div className="autocompleteTextBox" id={`autocompleteTextBox-${id}`}>
-      <label className="autocompleteTextBox__label">{label}</label>
-      <div ref={itemsContainer} className={`autocompleteTextBox__items${isAddingNewItem ? ' autocompleteTextBox__items-active' : ''}`} onClick={evnt => addNewItemHandler(evnt)} >
+      <div ref={itemsContainer} className={`autocompleteTextBox__items${isAddingNewItem ? ' autocompleteTextBox__items-active' : ''}`} onClick={evnt => toggleAddNewItemClickHandler(evnt)} >
         {items.map(
           (item, index) => {
             return (
@@ -72,7 +67,7 @@ const ReactAutoCompleteTagsInput = ({label, items, updateListHandler, filterOpti
             );
           }
         )}
-        <NewItem filterOptionsHandler={filterOptionsHandler} existingItems={items} selectNewItemHandler={addItemHandler} onBlurHandler={newItemBlurEventHandler} shouldShow={isAddingNewItem} id={id}/>
+        <NewItem filterOptionsHandler={filterOptionsHandler} selectedItems={items} selectNewItemHandler={selectNewItemHandler} onBlurHandler={newItemBlurEventHandler} shouldShow={isAddingNewItem} id={id}/>
       </div>
     </div>
   );
@@ -87,7 +82,7 @@ const AutoCompleteItem = ({itemIndex, item, removeItemHandler}) => {
   );
 }
 
-const NewItem = ({filterOptionsHandler, existingItems, selectNewItemHandler, onBlurHandler, shouldShow, id}) => {
+const NewItem = ({filterOptionsHandler, selectedItems, selectNewItemHandler, onBlurHandler, shouldShow, id}) => {
   const txtBoxRef = useRef(null);
   const newItemRef = useRef(null);
   const idRef = useRef(id);
@@ -123,7 +118,7 @@ const NewItem = ({filterOptionsHandler, existingItems, selectNewItemHandler, onB
     let options = filterOptionsHandler(filterText);
 
     // remove options which are already selected
-    let notSelectedOptions = options.filter(o => existingItems.indexOf(o) < 0);
+    let notSelectedOptions = options.filter(o => selectedItems.indexOf(o) < 0);
 
     if(notSelectedOptions.length == 0){
       return ["No further options available"];
