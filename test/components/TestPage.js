@@ -88,7 +88,7 @@ const TestPageComponent = () => {
 const CompaniesDataService = {
   getCompanyData:{
     tech:{
-      dev: [".NET", "ASP.NET", ".NET Core", "ASP.NET Core", "Javascript", "Angular", "React", "Redux", "AWS", "PHP", "Wordpress", "SQL Server", "DynamoDB", "AWS ECS", "Redis", "RabbitMQ"],
+      dev: ["ASP.NET Core", ".NET Core", "React", "Redux", "Javascript", "Node", "SQL Server", "Webpack"],
       classifications: [".NET", "AWS"],
       cloud: ["AWS"],
       architecture: ["Microservices"],
