@@ -13,6 +13,7 @@ This is inspired by the Components field editor in Jira.
 
 ## Demo
 Here is a simple demo which allows you to choose from a number of available programming languages and development tools.
+
 ![img](demo.gif)
 
 ## Installation
@@ -21,21 +22,29 @@ The package can be installed via npm
 npm install @jchristou/react-autocomplete-tags-input
 ```
 
-You will need to install React and React-Dom separately (peer dependencies).
-
-The default styling is not automatically included. To include it please import it
-```js
-import '@jchristou/react-autocomplete-tags-input/dist-component/style.css';
+### Peer Dependencies
+Install the following **peer dependencies** with given versions
+```
+"react": "^16.10.2",
+"react-dom": "^16.10.2"
 ```
 
 ## Usage
-See the [example project](https://github.com/jameschristou/react-autocomplete-tags-input/tree/master/example)
+See the [example project](https://github.com/jameschristou/react-autocomplete-tags-input/tree/master/example). This uses the `npm` published version of the component.
+
+### Default Styling
+To include the default styling you will need to import it
+```js
+import '@jchristou/react-autocomplete-tags-input/dist-component/style.css';
+```
 
 ## Development
 Run `npm install` to install all packages and depenedencies.
 
 ### Dev
-To compile front end assets while developing use `npm run start`.
+To run dev server with HMR while developing use `npm run start`. This will run the project on http://localhost:8080 by default.
+
+There is a `TestPage.js` component located in the `test` folder (see [TestPage.js]((https://github.com/jameschristou/react-autocomplete-tags-input/tree/master/test/components/TestPage.js))) which you can use for testing.
 
 ### Production
 `npm run build`
