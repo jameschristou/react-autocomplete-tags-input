@@ -15,12 +15,22 @@
     .autocompleteTextBoxItem{
         display: inline-block;
         margin: 4px 10px;
-        background-color: lightblue;
-        
+
+        &__text{
+            background-color: lightblue;
+        }
+
         &__text,
-        &__remove{
+        &__remove,
+        .autocompleteTextBoxAddBtn{
             padding: 5px 10px;
+            line-height: 28px;
+            vertical-align: bottom;
             display: inline-block;
+        }
+
+        .autocompleteTextBoxAddBtn{
+            display:none;
         }
 
         &__remove{
@@ -30,6 +40,22 @@
 
             &:hover{
                 background-color: grey;
+            }
+        }
+
+        .autocompleteTextBoxAddBtn{
+            font-weight: 700;
+            border: none;
+            width: 35px;
+            font-family: "Open Sans";
+            margin: 0;
+            font-size: 20px;
+            background-color: lightgrey;
+        }
+
+        @media (hover: hover){
+            .autocompleteTextBoxAddBtn{
+                display:none;
             }
         }
     }
@@ -45,7 +71,7 @@
 
         &__text{
             display:inline-block;
-            min-width:120px;
+            min-width: 120px;
             padding: 5px 10px;
             outline: none;
             background-color: lightblue;

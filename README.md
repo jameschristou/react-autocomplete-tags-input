@@ -1,6 +1,7 @@
 ## React Autocomplete Tags Input
 A simple React component for displaying an editable list of tags with autocompletion for adding more tags.
-This is inspired by the Components field editor in Jira.
+This is inspired by the Components field editor in Jira. This component is built using React Hooks and does not
+require Redux.
 
 ## Features
 - Display list of tags and allow user to add and delete tags
@@ -8,8 +9,10 @@ This is inspired by the Components field editor in Jira.
 - Simple interface
 
 ### Coming Soon
-- Reorder feature
+- Add (+) button for mobile
+- Reorder feature using drag and drop
 - Ability for user to create new tags (outside of the allowed list) and add them to the list
+- Multicolumn drop downs for very long select lists
 
 ## Demo
 Here is a simple demo which allows you to choose from a number of available programming languages and development tools.
