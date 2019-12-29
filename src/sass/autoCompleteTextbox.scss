@@ -1,14 +1,20 @@
+$items-container-color: rgb(235, 236, 240);
+$item-text-background-color: lightblue;
+$item-action-color:  lightgrey;
+$item-action-color-hover:  grey;
+
 .autocompleteTextBox{
     &__items{
         padding: 5px;
 
-        &:hover,
-        &-active{
-            background-color: rgb(235, 236, 240);
+        @media (hover: hover){
+            &:hover{
+                background-color: $items-container-color;
+            }
         }
 
-        &:focus{
-            background-color: red;
+        &-active{
+            background-color: $items-container-color;
         }
     }
 
@@ -17,7 +23,7 @@
         margin: 4px 10px;
 
         &__text{
-            background-color: lightblue;
+            background-color: $item-text-background-color;
         }
 
         &__text,
@@ -29,17 +35,15 @@
             display: inline-block;
         }
 
-        .autocompleteTextBoxAddBtn{
-            display:none;
-        }
-
         &__remove{
-            background-color: lightgrey;
+            background-color: $item-action-color;
             font-weight: bold;
             cursor: pointer;
-
-            &:hover{
-                background-color: grey;
+            
+            @media (hover: hover){
+                &:hover{
+                    background-color: $item-action-color-hover;
+                }
             }
         }
 
@@ -50,7 +54,7 @@
             font-family: "Open Sans";
             margin: 0;
             font-size: 20px;
-            background-color: lightgrey;
+            background-color: $item-action-color;
         }
 
         @media (hover: hover){
@@ -74,14 +78,14 @@
             min-width: 120px;
             padding: 5px 10px;
             outline: none;
-            background-color: lightblue;
+            background-color: $item-text-background-color;
         }
     
         &__list{
             list-style-type: none;
             padding:0;
             width:100%;
-            background-color: lightblue;
+            background-color: $item-text-background-color;
             margin: 0;
             box-sizing: border-box;
             border-top: solid 4px darkgray;
@@ -91,9 +95,11 @@
             padding: 5px 10px;
             cursor: pointer;
 
-            &:hover{
-                background-color:lightgrey;
-                font-weight: bold;
+            @media (hover: hover){
+                &:hover{
+                    background-color: $item-action-color;
+                    font-weight: bold;
+                }
             }
         }
     }

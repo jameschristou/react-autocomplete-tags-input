@@ -9,7 +9,6 @@ require Redux.
 - Simple interface
 
 ### Coming Soon
-- Add (+) button for mobile
 - Reorder feature using drag and drop
 - Ability for user to create new tags (outside of the allowed list) and add them to the list
 - Multicolumn drop downs for very long select lists
