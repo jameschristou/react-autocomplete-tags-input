@@ -13,6 +13,9 @@ require Redux.
 - Ability for user to create new tags (outside of the allowed list) and add them to the list
 - Multicolumn drop downs for very long select lists
 
+## Suggestions & Feature Requests
+If you have any suggestions for improvements for feature requests, open an issue on the [github page](https://github.com/jameschristou/react-autocomplete-tags-input/issues)
+
 ## Demo
 Here is a simple demo which allows you to choose from a number of available programming languages and development tools.
 
