@@ -1,6 +1,6 @@
 {
   "name": "@jchristou/react-autocomplete-tags-input",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "React component for displaying an editable list of tags with autocompletion for adding more tags",
   "main": "dist-component/index.js",
   "scripts": {

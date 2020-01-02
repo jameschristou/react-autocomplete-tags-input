@@ -18,6 +18,15 @@ $item-action-color-hover:  grey;
         }
     }
 
+    &NoItems__text{
+        display: inline-block;
+        margin: 4px 10px;
+        padding: 5px 10px;
+        line-height: 28px;
+        vertical-align: bottom;
+        background-color: $items-container-color;
+    }
+
     .autocompleteTextBoxItem{
         display: inline-block;
         margin: 4px 10px;

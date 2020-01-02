@@ -50,24 +50,34 @@ const ReactAutoCompleteTagsInput = ({items, addItemHandler, deleteItemHandler, f
     console.log('newItemBlurEventHandler');
   }
 
-  const addNewItemButtonClickHandler = () => {
-
-  }
-
   return (
     <div className="autocompleteTextBox" id={`autocompleteTextBox-${id}`}>
       <div ref={itemsContainer} className={`autocompleteTextBox__items${isAddingNewItem ? ' autocompleteTextBox__items-active' : ''}`} onClick={evnt => toggleAddNewItemClickHandler(evnt)} >
-        {items.map(
-          (item, index) => {
-            return (
-              <AutoCompleteItem key={index} item={item} deleteItemHandler={deleteItemHandler}/>
-            );
-          }
-        )}
+        <Items items={items} deleteItemHandler={deleteItemHandler}/>
         <AddNewItemButton shouldShow={!isAddingNewItem} onClickHandler={toggleAddNewItemClickHandler}/>
         <NewItem filterOptionsHandler={filterOptionsHandler} selectedItems={items} selectNewItemHandler={selectNewItemHandler} onBlurHandler={newItemBlurEventHandler} shouldShow={isAddingNewItem} id={id}/>
       </div>
     </div>
+  );
+}
+
+const Items = ({items, deleteItemHandler}) => {
+  if(items.length == 0){
+    return (
+      <span className="autocompleteTextBoxNoItems__text">None</span>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      {items.map(
+        (item, index) => {
+          return (
+            <AutoCompleteItem key={index} item={item} deleteItemHandler={deleteItemHandler}/>
+          );
+        }
+      )}
+    </React.Fragment>
   );
 }
 
