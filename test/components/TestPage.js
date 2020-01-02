@@ -77,7 +77,7 @@ const TestPageComponent = () => {
       <div>
         <h3>Tech</h3>
         <label>Dev</label>
-        <ReactAutoCompleteTagsInput items={companyData.tech.dev} addItemHandler={addItemToDevList} deleteItemHandler={deleteItemFromDevList} filterOptionsHandler={filterDevOptionsHandler}/>
+        <ReactAutoCompleteTagsInput items={companyData.tech.dev} addItemHandler={addItemToDevList} deleteItemHandler={deleteItemFromDevList} filterOptionsHandler={filterDevOptionsHandler} emptyTagsText="None selected"/>
         <label>Tools</label>
         <ReactAutoCompleteTagsInput items={companyData.tech.tools} addItemHandler={addItemToToolsList} deleteItemHandler={deleteItemFromToolsList} filterOptionsHandler={filterToolsOptionsHandler}/>
       </div>

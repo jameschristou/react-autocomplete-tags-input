@@ -2,7 +2,7 @@ import './sass/autoCompleteTextbox.scss';
 
 import React, {useState, useRef, useEffect} from "react";
 
-const ReactAutoCompleteTagsInput = ({items, addItemHandler, deleteItemHandler, filterOptionsHandler}) => {
+const ReactAutoCompleteTagsInput = ({items, addItemHandler, deleteItemHandler, filterOptionsHandler, emptyTagsText}) => {
   const [isAddingNewItem, setIsAddingNewItem] = useState(false);
   const itemsContainer = useRef();
   const [id, setId] = useState(null);
@@ -53,7 +53,7 @@ const ReactAutoCompleteTagsInput = ({items, addItemHandler, deleteItemHandler, f
   return (
     <div className="autocompleteTextBox" id={`autocompleteTextBox-${id}`}>
       <div ref={itemsContainer} className={`autocompleteTextBox__items${isAddingNewItem ? ' autocompleteTextBox__items-active' : ''}`} onClick={evnt => toggleAddNewItemClickHandler(evnt)} >
-        <Items items={items} deleteItemHandler={deleteItemHandler}/>
+        <Items items={items} deleteItemHandler={deleteItemHandler} emptyTagsText={emptyTagsText}/>
         <AddNewItemButton shouldShow={!isAddingNewItem} onClickHandler={toggleAddNewItemClickHandler}/>
         <NewItem filterOptionsHandler={filterOptionsHandler} selectedItems={items} selectNewItemHandler={selectNewItemHandler} onBlurHandler={newItemBlurEventHandler} shouldShow={isAddingNewItem} id={id}/>
       </div>
@@ -61,10 +61,10 @@ const ReactAutoCompleteTagsInput = ({items, addItemHandler, deleteItemHandler, f
   );
 }
 
-const Items = ({items, deleteItemHandler}) => {
+const Items = ({items, deleteItemHandler, emptyTagsText}) => {
   if(items.length == 0){
     return (
-      <span className="autocompleteTextBoxNoItems__text">None</span>
+      <span className="autocompleteTextBoxNoItems__text">{!emptyTagsText || emptyTagsText.trim().length == 0 ? "None" : emptyTagsText}</span>
     );
   }
 
