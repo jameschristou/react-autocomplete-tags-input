@@ -62,13 +62,15 @@ $item-action-color-hover:  silver;
         }
 
         .autocompleteTextBoxAddBtn{
-            font-weight: 700;
             border: none;
-            width: 35px;
+            width: 40px;
             font-family: "Open Sans";
             margin: 0;
-            font-size: 20px;
+            font-size: 30px;
             background-color: $item-action-color;
+            padding: 0 10px;
+            color: grey;
+            border: 1px solid $item-action-color-hover;
         }
 
         @media (hover: hover){
