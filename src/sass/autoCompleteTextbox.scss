@@ -1,7 +1,7 @@
 $items-container-color: rgb(235, 236, 240);
 $item-text-background-color: lightblue;
-$item-action-color:  lightgrey;
-$item-action-color-hover:  grey;
+$item-action-color:  gainsboro;
+$item-action-color-hover:  silver;
 
 .autocompleteTextBox{
     &__items{
@@ -39,15 +39,20 @@ $item-action-color-hover:  grey;
         &__remove,
         .autocompleteTextBoxAddBtn{
             padding: 5px 10px;
-            line-height: 28px;
+            height: 40px;
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
             vertical-align: bottom;
-            display: inline-block;
         }
 
         &__remove{
             background-color: $item-action-color;
-            font-weight: bold;
             cursor: pointer;
+            fill: grey;
+            border: 1px solid $item-action-color-hover;
+            padding: 5px;
+            outline: none;
             
             @media (hover: hover){
                 &:hover{
@@ -83,11 +88,12 @@ $item-action-color-hover:  grey;
         }
 
         &__text{
-            display:inline-block;
-            min-width: 120px;
-            padding: 5px 10px;
+            min-width: 150px;
+            padding: 10px;
             outline: none;
             background-color: $item-text-background-color;
+            height: 40px;
+            box-sizing: border-box;
         }
     
         &__list{
@@ -97,7 +103,7 @@ $item-action-color-hover:  grey;
             background-color: $item-text-background-color;
             margin: 0;
             box-sizing: border-box;
-            border-top: solid 4px darkgray;
+            border-top: solid 1px darkgray;
         }
 
         &__listitem{

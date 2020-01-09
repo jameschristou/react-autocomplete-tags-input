@@ -93,7 +93,11 @@ const AutoCompleteItem = ({itemIndex, item, deleteItemHandler}) => {
   return (
     <div className="autocompleteTextBoxItem" onClick={evnt => evnt.stopPropagation()}>
       <span className="autocompleteTextBoxItem__text">{item}</span>
-      <span className="autocompleteTextBoxItem__remove" onClick={event => deleteItemHandler(item)}>x</span>
+      <button className="autocompleteTextBoxItem__remove" onClick={event => deleteItemHandler(item)}>
+        <svg width="26" height="26" viewBox="-1 -2 26 26" focusable="false" role="presentation">
+          <path d="M12 10.586L6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586z"></path>
+        </svg>
+      </button>
     </div>
   );
 }
