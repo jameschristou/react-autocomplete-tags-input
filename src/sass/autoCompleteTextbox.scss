@@ -1,7 +1,7 @@
 $items-container-color: rgb(235, 236, 240);
 $item-text-background-color: lightblue;
 $item-action-color:  gainsboro;
-$item-action-color-hover:  silver;
+$item-action-color-hover: darken($item-action-color, 8%);
 
 .autocompleteTextBox{
     &__items{
@@ -109,13 +109,12 @@ $item-action-color-hover:  silver;
         }
 
         &__listitem{
-            padding: 5px 10px;
+            padding: 8px 10px;
             cursor: pointer;
 
             @media (hover: hover){
                 &:hover{
-                    background-color: $item-action-color;
-                    font-weight: bold;
+                    background-color: darken($item-text-background-color, 8%)
                 }
             }
         }
