@@ -87,6 +87,7 @@ $item-action-color-hover: darken($item-action-color, 8%);
 
         &__container{
             position:absolute;
+            border: solid 1px darken($item-text-background-color, 8%);
         }
 
         &__text{
